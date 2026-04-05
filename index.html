@@ -689,6 +689,7 @@
 <header>
   <div class="header-crafts">
     <span class="header-craft-pill">🏺 Pottery</span>
+    <span class="header-craft-pill">🎨 Painting</span>
     <span class="header-craft-pill">🪡 Leatherworking</span>
     <span class="header-craft-pill" style="color:rgba(255,255,255,0.95);border-color:rgba(255,255,255,0.4);">🪵 Woodworking</span>
     <span class="header-craft-pill" style="color:rgba(255,255,255,0.95);border-color:rgba(255,255,255,0.4);">🔥 Glassblowing</span>
@@ -703,6 +704,7 @@
     <select id="craftFilter">
       <option value="">All Crafts</option>
       <option value="Pottery">Pottery</option>
+      <option value="Painting">Painting</option>
       <option value="Leatherworking">Leatherworking</option>
       <option value="Woodworking">Woodworking</option>
       <option value="Glassblowing">Glassblowing</option>
@@ -771,6 +773,15 @@
         <option value="Raku">Raku</option>
         <option value="Alternative Firing">Alternative Firing</option>
         <option value="Pottery Painting">Pottery Painting</option>
+      </optgroup>
+      <optgroup label="Painting">
+        <option value="Drawing">Drawing</option>
+        <option value="Acrylic Painting">Acrylic Painting</option>
+        <option value="Oil Painting">Oil Painting</option>
+        <option value="Watercolor">Watercolor</option>
+        <option value="Mixed Media">Mixed Media</option>
+        <option value="Splatter Painting">Splatter Painting</option>
+        <option value="Paint Parties">Paint Parties</option>
       </optgroup>
       <optgroup label="Leather">
         <option value="Hand Stitching">Hand Stitching</option>
@@ -955,23 +966,24 @@ const studios = [
   },
   // ── RALEIGH ──
   {
+    craft: ["Pottery", "Painting"],
     name: "Sertoma Arts Center",
     city: "Raleigh",
     address: "Raleigh, NC",
     phone: "(919) 996-2329",
     website: "https://raleighnc.gov/arts",
-    desc: "City-run center with more than a dozen wheels, separate glazing and hand-building areas, electric kiln firing, and open studio time.",
-    tags: ["Open Studio", "Wheel Throwing", "Hand Building", "Beginner-Friendly"]
+    desc: "City-run Raleigh arts center with dedicated ceramics facilities plus year-round visual arts programming. Alongside clay, recent public class listings include mixed media and drawing-based courses for teens and adults.",
+    tags: ["Classes", "Open Studio", "Wheel Throwing", "Hand Building", "Beginner-Friendly", "Mixed Media", "Drawing"]
   },
   {
-    craft: ["Pottery", "Jewelry Making"],
+    craft: ["Pottery", "Jewelry Making", "Painting"],
     name: "Pullen Arts Center",
     city: "Raleigh",
     address: "Pullen Park, Raleigh, NC",
     phone: "(919) 996-6126",
     website: "https://raleighnc.gov",
     desc: "City-run arts center inside Pullen Park offering classes in pottery, jewelry making, bookmaking, printmaking, and painting taught by professional artists. Studio memberships available for ongoing access.",
-    tags: ["Classes", "Studio Membership", "Multi-Discipline", "Metalsmithing", "Wheel Throwing"]
+    tags: ["Classes", "Studio Membership", "Multi-Discipline", "Metalsmithing", "Wheel Throwing", "Drawing", "Mixed Media"]
   },
   {
     name: "Liz Kelly Pottery",
@@ -1072,8 +1084,9 @@ const studios = [
     address: "Greensboro Cultural Center, Room 129, Greensboro, NC",
     phone: "",
     website: "https://artalliancegso.org",
-    desc: "Adult pottery classes in 7–8 week sessions at the Greensboro Cultural Center. Accessible and community-focused instruction.",
-    tags: ["Classes", "Adult", "Beginner-Friendly"]
+    craft: ["Pottery", "Painting"],
+    desc: "Community-focused Greensboro arts program running pottery in Room 129 and fine art classes in Room 127 at the Cultural Center. Current offerings span drawing and painting for adults and youth in small class formats.",
+    tags: ["Classes", "Adult", "Beginner-Friendly", "Drawing", "Acrylic Painting", "Multi-Discipline"]
   },
   {
     name: "The Clay Bakery Studio",
@@ -1629,6 +1642,72 @@ const studios = [
     website: "https://ballashwoodworks.com",
     desc: "Veteran-owned shop in Fayetteville offering hands-on workshops in both woodworking and leatherworking. Monthly full-day leather sessions are led by Master Leatherworker Steven Chadduck — eight hours covering cutting, stitching, stamping, and dyeing. Woodworking classes and open shop access round out the offering.",
     tags: ["Workshops", "Classes", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods", "Open Studio", "Multi-Discipline"]
+  },
+  // ── PAINTING ──
+  // ── CHARLOTTE ──
+  {
+    craft: "Painting",
+    name: "Cre8tive Palette",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://www.cre8tivepalette.com/",
+    desc: "Charlotte painting and drawing studio offering classes for kids, teens, and adults from beginner through advanced. Monthly class batches cover graphite, acrylic, oil painting, pastel, and color pencil fundamentals in a structured studio format.",
+    tags: ["Classes", "Drawing", "Acrylic Painting", "Oil Painting", "Kids", "Adult", "All Levels"]
+  },
+  {
+    craft: "Painting",
+    name: "Splatter Charlotte",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://www.splattercharlotte.com/",
+    desc: "NoDa paint experience built around making your own abstract canvas without needing formal training. Sessions include paint, canvases, protective gear, and delivery after the work dries, with team-building and celebration bookings available.",
+    tags: ["Splatter Painting", "Paint Parties", "Beginner-Friendly", "Events", "Team Building"]
+  },
+  // ── ASHEVILLE ──
+  {
+    craft: "Painting",
+    name: "Asheville Art Museum Adult Studio",
+    city: "Asheville",
+    address: "2 South Pack Square, Asheville, NC 28801",
+    phone: "(828) 253-3227",
+    website: "https://www.ashevilleart.org/learn/adult-programs/adult-studio/",
+    desc: "Museum-led adult studio program offering rotating workshops in painting, mixed media, and other visual arts inspired by current exhibitions. A strong fit for adults who want project-based classes with visiting teaching artists.",
+    tags: ["Classes", "Acrylic Painting", "Mixed Media", "Beginner-Friendly", "All Levels"]
+  },
+  // ── DURHAM ──
+  {
+    craft: "Painting",
+    name: "Durham Arts Council",
+    city: "Durham",
+    address: "120 Morris St, Durham, NC 27701",
+    phone: "(919) 560-2787",
+    website: "https://durhamarts.org/dac-art-classes/",
+    desc: "Downtown Durham arts hub offering painting and drawing classes alongside printmaking, mixed media, photography, and more throughout the year. Good option for beginners who want structured public classes with multiple session formats.",
+    tags: ["Classes", "Drawing", "Mixed Media", "Beginner-Friendly", "All Levels", "Non-Profit"]
+  },
+  // ── GREENSBORO ──
+  {
+    craft: "Painting",
+    name: "NKPaints Art Studio",
+    city: "Greensboro",
+    address: "503 East Washington St, Unit C, Greensboro, NC 27401",
+    phone: "(336) 324-0187",
+    website: "https://www.nkpaintsartstudio.com/",
+    desc: "Downtown Greensboro painting studio and gallery offering weekly art classes, camps, field trips, paint parties, and private celebrations. Built to feel approachable for beginners while still giving students a real studio experience.",
+    tags: ["Classes", "Paint Parties", "Acrylic Painting", "Beginner-Friendly", "Kids", "Camps"]
+  },
+  // ── WILMINGTON ──
+  {
+    craft: "Painting",
+    name: "theArtWorks",
+    city: "Wilmington",
+    address: "200 Willard Street, Wilmington, NC 28401",
+    phone: "(910) 352-7077",
+    website: "https://www.theartworks.co/classes",
+    desc: "Large Wilmington art village with working studios, gallery space, and classrooms. Current class listings include painting alongside photography and fiber offerings, giving it more of an open creative campus feel than a single-medium studio.",
+    tags: ["Classes", "Gallery", "Open Studio", "Community", "All Levels"]
   },
 ];
 
