@@ -383,9 +383,102 @@
       font-size: 0.82rem;
     }
 
-    @media (max-width: 600px) {
-      .controls-inner { flex-direction: column; }
-      select { min-width: 100%; }
+    @media (max-width: 768px) {
+      /* Header */
+      header {
+        padding: 32px 16px 36px;
+        background-image:
+          radial-gradient(circle at 50% 30%, rgba(46,107,82,0.28) 0%, transparent 60%),
+          radial-gradient(circle at 80% 80%, rgba(200,125,42,0.18) 0%, transparent 45%);
+      }
+
+      .header-crafts {
+        flex-wrap: wrap;
+        gap: 7px;
+        padding: 0 8px;
+        justify-content: center;
+      }
+
+      .header-craft-pill {
+        font-size: 0.68rem;
+        padding: 3px 10px;
+      }
+
+      /* Nav */
+      nav {
+        padding: 0 16px;
+        height: 48px;
+      }
+
+      .nav-logo {
+        font-size: 0.9rem;
+      }
+
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      /* Controls */
+      .controls {
+        padding: 0 12px;
+        margin-top: -22px;
+      }
+
+      .controls-inner {
+        flex-direction: column;
+        padding: 16px;
+        gap: 10px;
+      }
+
+      .search-wrap { min-width: 100%; }
+      select { min-width: 100%; width: 100%; }
+      input[type="text"] { font-size: 1rem; }
+
+      /* Result bar */
+      .result-bar {
+        padding: 0 12px;
+      }
+
+      /* Grid — single column, no horizontal scroll */
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+
+      /* Cards */
+      .card:hover {
+        transform: none;
+      }
+
+      .card-name {
+        font-size: 1.05rem;
+      }
+
+      /* Featured card banner */
+      .card-featured-banner {
+        padding: 18px 16px 14px;
+      }
+
+      /* Submit page */
+      #submit-page {
+        margin: 40px auto 60px;
+        padding: 0 16px;
+      }
+
+      /* Footer */
+      footer {
+        padding: 20px 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      header h1 { font-size: 1.7rem; }
+      .header-craft-pill { font-size: 0.63rem; padding: 3px 8px; }
+      .nav-logo { font-size: 0.82rem; }
+      .nav-link { padding: 5px 8px; font-size: 0.74rem; }
     }
 
     /* NAV */
