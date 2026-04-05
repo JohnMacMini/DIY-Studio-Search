@@ -96,45 +96,10 @@
       text-shadow: 0 8px 26px rgba(0,0,0,0.32);
     }
 
-    .hero-brand {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-      max-width: 860px;
-    }
-
-    .hero-logo-icon {
-      width: clamp(150px, 18vw, 240px);
-      flex-shrink: 0;
+    .hero-logo-lockup {
+      display: block;
+      width: min(100%, 760px);
       filter: drop-shadow(0 16px 30px rgba(0,0,0,0.34));
-    }
-
-    .hero-brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
-      line-height: 0.94;
-      letter-spacing: -0.04em;
-      color: #f4e4c0;
-      text-transform: uppercase;
-    }
-
-    .hero-title span {
-      color: var(--gold);
-    }
-
-    .hero-tagline {
-      font-family: 'Manrope', sans-serif;
-      font-size: clamp(1rem, 1.8vw, 1.4rem);
-      font-weight: 500;
-      color: rgba(255,241,219,0.9);
-      letter-spacing: 0.01em;
     }
 
     .header-crafts {
@@ -461,14 +426,8 @@
         max-width: 100%;
       }
 
-      .hero-brand {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-
-      .hero-logo-icon {
-        width: clamp(132px, 38vw, 180px);
+      .hero-logo-lockup {
+        width: min(100%, 560px);
       }
 
       .hero-subtitle {
@@ -549,8 +508,6 @@
     }
 
     @media (max-width: 400px) {
-      .hero-title { font-size: 2.45rem; }
-      .hero-tagline { font-size: 0.98rem; }
       .hero-subtitle { font-size: 0.98rem; }
       .header-craft-pill { font-size: 0.63rem; padding: 3px 8px; }
       .nav-logo { font-size: 0.82rem; }
@@ -767,13 +724,7 @@
 <header>
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="hero-brand">
-        <img class="hero-logo-icon" src="assets/logo-icon.png" alt="DIY Studio Search logo icon" />
-        <div class="hero-brand-text">
-          <h1 class="hero-title">DIY Studio <span>Search</span></h1>
-          <p class="hero-tagline">Find Your Creative Space</p>
-        </div>
-      </div>
+      <img class="hero-logo-lockup" src="assets/logo-lockup.png" alt="DIY Studio Search" />
       <p class="hero-subtitle">Find your creative space across pottery, painting, leatherworking, woodworking, glassblowing, and jewelry making classes.</p>
       <div class="header-crafts">
         <span class="header-craft-pill">Pottery</span>
