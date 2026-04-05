@@ -1,0 +1,24 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="badgeBg" x1="62" y1="48" x2="430" y2="462" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1F2E"/>
+      <stop offset="1" stop-color="#2E6B52"/>
+    </linearGradient>
+    <linearGradient id="badgeRing" x1="126" y1="112" x2="350" y2="356" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E3BF"/>
+      <stop offset="1" stop-color="#C87D2A"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="48" y="48" width="416" height="416" rx="92" fill="url(#badgeBg)"/>
+  <circle cx="246" cy="234" r="122" stroke="url(#badgeRing)" stroke-width="18"/>
+  <path d="M324 314L388 378" stroke="#F6E3BF" stroke-width="22" stroke-linecap="round"/>
+
+  <path d="M188 154C205 136 231 129 256 135C280 141 300 158 308 182" stroke="#5ECFA4" stroke-width="16" stroke-linecap="round"/>
+  <path d="M173 270C192 291 221 302 251 300C281 298 307 284 325 261" stroke="#F6E3BF" stroke-width="16" stroke-linecap="round"/>
+  <path d="M165 230H322" stroke="#C87D2A" stroke-width="16" stroke-linecap="round"/>
+
+  <text x="115" y="434" fill="#F6E3BF" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" letter-spacing="6">
+    DIY STUDIO
+  </text>
+</svg>
