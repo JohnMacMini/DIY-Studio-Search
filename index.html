@@ -102,6 +102,16 @@
       filter: drop-shadow(0 16px 30px rgba(0,0,0,0.34));
     }
 
+    .hero-logo-frame {
+      display: inline-block;
+      padding: 20px 24px 18px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(248,239,225,0.88) 0%, rgba(238,224,202,0.78) 100%);
+      border: 1px solid rgba(255,244,223,0.34);
+      box-shadow: 0 20px 42px rgba(25,15,10,0.18);
+      backdrop-filter: blur(5px);
+    }
+
     .header-crafts {
       display: flex;
       flex-wrap: wrap;
@@ -430,6 +440,11 @@
         width: min(100%, 560px);
       }
 
+      .hero-logo-frame {
+        padding: 14px 16px 12px;
+        border-radius: 20px;
+      }
+
       .hero-subtitle {
         margin-top: 14px;
         padding: 12px 14px;
@@ -724,7 +739,9 @@
 <header>
   <div class="hero-inner">
     <div class="hero-copy">
-      <img class="hero-logo-lockup" src="assets/logo-lockup.png" alt="DIY Studio Search" />
+      <div class="hero-logo-frame">
+        <img class="hero-logo-lockup" src="assets/logo-lockup.png" alt="DIY Studio Search" />
+      </div>
       <p class="hero-subtitle">Find your creative space across pottery, painting, leatherworking, woodworking, glassblowing, and jewelry making classes.</p>
       <div class="header-crafts">
         <span class="header-craft-pill">Pottery</span>
