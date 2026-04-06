@@ -11,11 +11,11 @@ The live file for the directory is `index.html`. Everything in this folder is pa
 ## Current State (as of April 2026)
 
 - ~56 pottery studios listed (North Carolina)
-- 11 woodworking studios listed (North Carolina)
-- 8 glassblowing studios listed (North Carolina)
-- 7 jewelry making studios listed (North Carolina)
-- 6 leatherworking studios listed (North Carolina)
-- ~88 total studio entries across all categories (many studios span multiple crafts)
+- 17 woodworking studios listed (North Carolina)
+- 15 glassblowing studios listed (North Carolina)
+- 13 jewelry making studios listed (North Carolina)
+- 8 leatherworking studios listed (North Carolina)
+- ~109 total studio entries across all categories (many studios span multiple crafts)
 - The project is in Phase 1 (pre-launch) moving into Phase 2 (growth)
 - First featured listing is live: ClearWater Arts Center & Studios (Concord, NC) — Pottery + Woodworking
 - Outreach has not started; studios need to be listed before any contact is made
@@ -50,10 +50,10 @@ The live file for the directory is `index.html`. Everything in this folder is pa
 ## Craft Categories (in order of launch)
 
 1. Pottery — live, ~56 studios listed (NC)
-2. Leatherworking — live, 6 studios listed (NC)
-3. Woodworking — live, 11 studios listed (NC)
-4. Glassblowing — live, 8 studios listed (NC)
-5. Jewelry Making — live, 7 studios listed (NC)
+2. Leatherworking — live, 8 studios listed (NC)
+3. Woodworking — live, 17 studios listed (NC)
+4. Glassblowing — live, 15 studios listed (NC)
+5. Jewelry Making — live, 13 studios listed (NC)
 6. Planned future categories: fiber arts, bookbinding, and expansion of existing categories to additional states
 
 Note: Studios spanning multiple crafts (e.g. Sawtooth School for Visual Art, John C. Campbell Folk School) are counted in each applicable category.
