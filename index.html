@@ -80,16 +80,7 @@
       pointer-events: none;
     }
 
-    .hero-inner::before {
-      content: '';
-      position: absolute;
-      inset: -24px -32px -24px -32px;
-      background: rgba(16,10,7,0.14);
-      border-radius: 34px;
-      z-index: -1;
-    }
-
-    header::after {
+header::after {
       content: '';
       position: absolute;
       inset: auto 0 0;
@@ -117,20 +108,49 @@
       text-shadow: 0 8px 26px rgba(0,0,0,0.32);
     }
 
-    .hero-logo-lockup {
-      display: block;
-      width: min(100%, 760px);
-      filter: drop-shadow(0 16px 30px rgba(0,0,0,0.34));
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
     }
 
-    .hero-logo-frame {
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: #f8f0e0;
+      letter-spacing: -0.01em;
+      text-shadow: 0 4px 28px rgba(0,0,0,0.45);
+      margin-bottom: 20px;
+    }
+
+    .hero-actions {
+      margin-bottom: 28px;
+    }
+
+    .hero-cta {
       display: inline-block;
-      padding: 20px 24px 18px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(248,239,225,0.88) 0%, rgba(238,224,202,0.78) 100%);
-      border: 1px solid rgba(255,244,223,0.34);
-      box-shadow: 0 20px 42px rgba(25,15,10,0.18);
-      backdrop-filter: blur(5px);
+      padding: 13px 30px;
+      background: linear-gradient(135deg, #a37849 0%, #d7b06a 100%);
+      color: #23170f;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.32);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.38);
     }
 
     .header-crafts {
@@ -153,16 +173,11 @@
     }
 
     .hero-subtitle {
-      margin-top: 18px;
       font-size: 1.05rem;
-      line-height: 1.6;
-      color: rgba(255,241,219,0.88);
-      max-width: 31rem;
-      padding: 14px 18px;
-      border-radius: 16px;
-      background: rgba(27,18,12,0.42);
-      border: 1px solid rgba(244,220,181,0.12);
-      backdrop-filter: blur(4px);
+      line-height: 1.65;
+      color: rgba(255,241,219,0.76);
+      max-width: 34rem;
+      margin-bottom: 28px;
     }
 
     /* SEARCH CONTROLS */
@@ -457,18 +472,13 @@
         max-width: 100%;
       }
 
-      .hero-logo-lockup {
-        width: min(100%, 560px);
-      }
-
-      .hero-logo-frame {
-        padding: 14px 16px 12px;
-        border-radius: 20px;
+      .hero-title {
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
       }
 
       .hero-subtitle {
-        margin-top: 14px;
-        padding: 12px 14px;
+        font-size: 0.98rem;
+        max-width: 100%;
       }
 
       .header-crafts {
@@ -544,7 +554,8 @@
     }
 
     @media (max-width: 400px) {
-      .hero-subtitle { font-size: 0.98rem; }
+      .hero-title { font-size: 2.1rem; }
+      .hero-subtitle { font-size: 0.93rem; }
       .header-craft-pill { font-size: 0.63rem; padding: 3px 8px; }
       .nav-logo { font-size: 0.82rem; }
       .nav-link { padding: 5px 8px; font-size: 0.74rem; }
@@ -760,10 +771,12 @@
 <header>
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="hero-logo-frame">
-        <img class="hero-logo-lockup" src="assets/logo-lockup.png" alt="DIY Studio Search" />
+      <p class="hero-eyebrow">North Carolina</p>
+      <h1 class="hero-title">DIY Studio Search</h1>
+      <p class="hero-subtitle">Find hands-on classes in pottery, leatherworking, woodworking, glassblowing, and jewelry making — all across North Carolina.</p>
+      <div class="hero-actions">
+        <button class="hero-cta" onclick="document.querySelector('.controls').scrollIntoView({behavior:'smooth'})">Browse Studios</button>
       </div>
-      <p class="hero-subtitle">Find your creative space across pottery, painting, leatherworking, woodworking, glassblowing, and jewelry making classes.</p>
       <div class="header-crafts">
         <span class="header-craft-pill">Pottery</span>
         <span class="header-craft-pill">Painting</span>
@@ -1147,13 +1160,14 @@ const studios = [
   },
   // ── GREENSBORO ──
   {
+    craft: ["Pottery", "Painting"],
     name: "Center for Visual Artists",
     city: "Greensboro",
     address: "200 North Davie Street Box 13, Greensboro, NC 27401",
     phone: "(336) 333-7475",
     website: "https://mycvagreensboro.org",
-    desc: "Adult pottery classes in a professional arts center setting. Part of Greensboro's vibrant Davie Street arts district.",
-    tags: ["Classes", "Adult"]
+    desc: "Greensboro visual arts hub inside the Cultural Center offering adult pottery classes, watercolor, printmaking, and additional rotating workshops. Studio memberships are available for both pottery and printmaking.",
+    tags: ["Classes", "Adult", "Watercolor", "Printmaking", "Studio Membership", "Multi-Discipline"]
   },
   {
     name: "Art Alliance Greensboro",
@@ -1222,14 +1236,14 @@ const studios = [
   },
   // ── WINSTON-SALEM ──
   {
-    craft: ["Pottery", "Woodworking", "Glassblowing", "Jewelry Making"],
+    craft: ["Pottery", "Painting", "Woodworking", "Glassblowing", "Jewelry Making"],
     name: "Sawtooth School for Visual Art",
     city: "Winston-Salem",
     address: "251 N Spruce St, Winston-Salem, NC 27101",
     phone: "(336) 723-7395",
     website: "https://sawtooth.org",
-    desc: "One of the most complete multi-craft education campuses in NC. Non-profit community art school offering ceramics, dedicated Wood and Lathe Studios, and a Glass Studio — all under one roof. Classes range from beginner through advanced across all three disciplines, with open studio access and private instruction available.",
-    tags: ["Classes", "Workshops", "Non-Profit", "Community", "All Levels", "Beginner-Friendly", "Woodturning", "Flameworking", "Open Studio", "Multi-Discipline"]
+    desc: "One of the most complete multi-craft education campuses in NC. Sawtooth offers ceramics, drawing and painting, woodworking, glass, metals and more under one roof, with classes ranging from beginner through advanced plus open studio and private instruction in select departments.",
+    tags: ["Classes", "Workshops", "Non-Profit", "Community", "All Levels", "Beginner-Friendly", "Woodturning", "Flameworking", "Open Studio", "Drawing", "Watercolor", "Oil Painting", "Private Lessons", "Multi-Discipline"]
   },
   {
     name: "Goose Creek Pottery",
@@ -1289,14 +1303,14 @@ const studios = [
   },
   // ── CONCORD ──
   {
-    craft: ["Pottery", "Woodworking"],
+    craft: ["Pottery", "Painting", "Woodworking"],
     name: "ClearWater Arts Center & Studios",
     city: "Concord",
     address: "223 Crowell Dr NW, Concord, NC 28025",
     phone: "(704) 920-6600",
     website: "https://clearwaterartists.com",
-    desc: "City of Concord community arts hub and one of the Charlotte metro's most complete multi-craft spaces. The ceramics center has a full open classroom with potter's wheels, glazing room, mixing room, and kiln room. The Southern Piedmont Woodturners Club calls this home, and 14 working artists keep the studios active year-round. Drop-in hours Wed–Sat.",
-    tags: ["Wheel Throwing", "Glazing", "Woodturning", "Classes", "Open Studio", "Community", "Gallery", "Multi-Discipline"],
+    desc: "City of Concord community arts hub and one of the Charlotte metro's most complete multi-craft spaces. ClearWater supports ceramics, painting-focused workshops, woodturning, galleries, and working artist studios across multiple mediums. The ceramics center has a full classroom, and the main building regularly hosts public art demos and paint-based classes.",
+    tags: ["Wheel Throwing", "Hand Building", "Glazing", "Woodturning", "Painting", "Classes", "Workshops", "Open Studio", "Community", "Gallery", "Multi-Discipline"],
     featured: true,
     pullQuote: "Pottery, woodturning, and working artists all under one roof — one of Concord's best-kept creative secrets.",
     bookingUrl: "https://clearwaterartists.com"
@@ -1611,14 +1625,14 @@ const studios = [
   },
   // ── BRASSTOWN ──
   {
-    craft: ["Leatherworking", "Woodworking"],
+    craft: ["Leatherworking", "Painting", "Woodworking"],
     name: "John C. Campbell Folk School",
     city: "Brasstown",
     address: "One Folk School Road, Brasstown, NC 28902",
     phone: "(828) 837-2775",
     website: "https://folkschool.org",
-    desc: "One of the oldest folk schools in the country, set in the Blue Ridge Mountains of western NC. Offers year-round weeklong and weekend classes in both leatherworking and woodworking — from hand-stitched leather goods and shoes to furniture making, woodturning, spoon carving, and beyond. Immersive residential setting with skilled instructors across every craft.",
-    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods", "Woodturning", "Furniture Making", "Retreats", "Multi-Discipline"]
+    desc: "One of the oldest folk schools in the country, set in the Blue Ridge Mountains of western NC. Offers year-round weeklong and weekend classes in leatherworking, woodworking, painting, drawing, mixed media, and dozens of other craft traditions in an immersive residential setting.",
+    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods", "Woodturning", "Furniture Making", "Drawing", "Mixed Media", "Retreats", "Multi-Discipline"]
   },
   // ── RALEIGH ──
   {
