@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIY Studio Search</title>
+  <meta name="description" content="Find hands-on studios and craft classes across North Carolina, from pottery and painting to leatherworking, woodworking, glassblowing, and jewelry making." />
+  <meta property="og:title" content="DIY Studio Search" />
+  <meta property="og:description" content="Find hands-on studios and craft classes across North Carolina." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/logo-icon.png" />
+  <meta property="og:image:alt" content="DIY Studio Search maker icon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DIY Studio Search" />
+  <meta name="twitter:description" content="Find hands-on studios and craft classes across North Carolina." />
+  <meta name="twitter:image" content="assets/logo-icon.png" />
+  <link rel="icon" type="image/png" href="assets/logo-icon.png" />
+  <link rel="apple-touch-icon" href="assets/logo-icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --craft: #8f683f;
+      --craft-light: #a88156;
+      --craft-pale: #f3e8d7;
+      --amber: #d3ad65;
+      --amber-pale: #f7edd7;
+      --slate: #7f624a;
+      --plum: #6a4a38;
+      --sage: #6c7664;
+      --stone: #8c7764;
+      --parchment: #efe2d0;
+      --dark: #23170f;
+      --card-bg: #ffffff;
+      --border: #dcc7ad;
+      --wood: #4f3523;
+      --walnut: #6b472f;
+      --gold: #d7b06a;
+      --ink: #20150f;
+
+      /* Legacy aliases kept for featured card references */
+      --terra: #8f683f;
+      --terra-light: #a88156;
+      --terra-pale: #f3e8d7;
+      --sienna: #23170f;
+      --clay: #d3ad65;
+      --cream: #f7f0e6;
+      --warm-gray: #7e6653;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(215,176,106,0.18), transparent 36%),
+        linear-gradient(180deg, #f5eadc 0%, #efe2d0 38%, #eadbc7 100%);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      color: white;
+      padding: 42px 24px 110px;
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      background:
+        linear-gradient(120deg, rgba(11,7,5,0.97) 0%, rgba(31,19,13,0.84) 45%, rgba(63,40,24,0.7) 100%),
+        url("assets/header-background.jpg") center/cover no-repeat;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,3,2,0.4) 0%, rgba(5,3,2,0.68) 100%),
+        radial-gradient(circle at 75% 52%, rgba(255,221,153,0.08), transparent 22%);
+      pointer-events: none;
+    }
+
+    .hero-inner::before {
+      content: '';
+      position: absolute;
+      inset: -24px -32px -24px -32px;
+      background: rgba(16,10,7,0.14);
+      border-radius: 34px;
+      z-index: -1;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 120px;
+      background: linear-gradient(180deg, rgba(239,226,208,0) 0%, rgba(239,226,208,0.94) 88%, rgba(239,226,208,1) 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .hero-copy {
+      max-width: 860px;
+      padding: 0;
+      border-radius: 0;
+      background: none;
+      border: none;
+      backdrop-filter: none;
+      text-shadow: 0 8px 26px rgba(0,0,0,0.32);
+    }
+
+    .hero-logo-lockup {
+      display: block;
+      width: min(100%, 760px);
+      filter: drop-shadow(0 16px 30px rgba(0,0,0,0.34));
+    }
+
+    .hero-logo-frame {
+      display: inline-block;
+      padding: 20px 24px 18px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(248,239,225,0.88) 0%, rgba(238,224,202,0.78) 100%);
+      border: 1px solid rgba(255,244,223,0.34);
+      box-shadow: 0 20px 42px rgba(25,15,10,0.18);
+      backdrop-filter: blur(5px);
+    }
+
+    .header-crafts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .header-craft-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(243,222,192,0.26);
+      background: rgba(32,21,15,0.38);
+      color: rgba(255,238,210,0.86);
+    }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255,241,219,0.88);
+      max-width: 31rem;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(27,18,12,0.42);
+      border: 1px solid rgba(244,220,181,0.12);
+      backdrop-filter: blur(4px);
+    }
+
+    /* SEARCH CONTROLS */
+    .controls {
+      max-width: 1120px;
+      margin: -58px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .controls-inner {
+      background: rgba(250,243,234,0.92);
+      border: 1px solid rgba(108,71,46,0.14);
+      border-radius: 22px;
+      box-shadow: 0 18px 54px rgba(54,33,20,0.14);
+      backdrop-filter: blur(10px);
+      padding: 22px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-wrap {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--warm-gray);
+      width: 18px; height: 18px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 13px 14px 13px 42px;
+      border: 1.5px solid rgba(143,104,63,0.22);
+      border-radius: 12px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: rgba(255,252,248,0.9);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--craft);
+      box-shadow: 0 0 0 4px rgba(211,173,101,0.12);
+    }
+
+    select {
+      padding: 13px 40px 13px 14px;
+      border: 1.5px solid rgba(143,104,63,0.22);
+      border-radius: 12px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: rgba(255,252,248,0.9);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%237a6e66' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      outline: none;
+      cursor: pointer;
+      min-width: 180px;
+      transition: border-color 0.2s;
+    }
+
+    select:focus {
+      border-color: var(--craft);
+      box-shadow: 0 0 0 4px rgba(211,173,101,0.12);
+    }
+
+    optgroup {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--stone);
+      font-family: 'Manrope', sans-serif;
+    }
+
+    optgroup option {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--dark);
+      padding-left: 8px;
+    }
+
+    /* COUNT */
+    .result-bar {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .result-count {
+      font-size: 0.88rem;
+      color: #71563f;
+      font-weight: 600;
+    }
+
+    /* GRID */
+    .grid {
+      max-width: 1200px;
+      margin: 16px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* CARD */
+    .card {
+      background: rgba(255,250,245,0.92);
+      border: 1px solid rgba(143,104,63,0.16);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 28px rgba(60,39,24,0.07);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 46px rgba(46,33,24,0.15);
+    }
+
+    .card-accent {
+      height: 5px;
+      width: 100%;
+    }
+
+    .card-accent.terra { background: var(--craft); }
+    .card-accent.sienna { background: var(--amber); }
+    .card-accent.sage { background: var(--slate); }
+    .card-accent.clay { background: var(--plum); }
+
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-city {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--craft);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.875rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--warm-gray);
+    }
+
+    .meta-row svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--amber);
+      width: 14px; height: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--craft-pale);
+      color: var(--craft);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--terra);
+      color: white;
+    }
+
+    .btn-primary:hover { background: var(--terra-light); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--terra);
+      border: 1.5px solid var(--terra);
+    }
+
+    .btn-secondary:hover {
+      background: var(--terra-pale);
+    }
+
+    /* EMPTY STATE */
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--warm-gray);
+    }
+
+    .empty h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(180deg, #2e1f15 0%, #1d130d 100%);
+      color: rgba(255,241,219,0.62);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 18px 16px 92px;
+        min-height: auto;
+      }
+
+      .hero-inner {
+        align-items: end;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-logo-lockup {
+        width: min(100%, 560px);
+      }
+
+      .hero-logo-frame {
+        padding: 14px 16px 12px;
+        border-radius: 20px;
+      }
+
+      .hero-subtitle {
+        margin-top: 14px;
+        padding: 12px 14px;
+      }
+
+      .header-crafts {
+        gap: 7px;
+        margin-top: 18px;
+      }
+
+      .header-craft-pill {
+        font-size: 0.68rem;
+        padding: 3px 10px;
+      }
+
+      nav {
+        padding: 0 16px;
+        height: 56px;
+      }
+
+      .nav-logo {
+        font-size: 0.96rem;
+      }
+
+      .nav-link {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .controls {
+        padding: 0 12px;
+        margin-top: -46px;
+      }
+
+      .controls-inner {
+        flex-direction: column;
+        padding: 16px;
+        gap: 10px;
+      }
+
+      .search-wrap { min-width: 100%; }
+      select { min-width: 100%; width: 100%; }
+      input[type="text"] { font-size: 1rem; }
+
+      .result-bar {
+        padding: 0 12px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+
+      .card:hover {
+        transform: none;
+      }
+
+      .card-name {
+        font-size: 1.05rem;
+      }
+
+      .card-featured-banner {
+        padding: 18px 16px 14px;
+      }
+
+      #submit-page {
+        margin: 40px auto 60px;
+        padding: 0 16px;
+      }
+
+      footer {
+        padding: 20px 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-subtitle { font-size: 0.98rem; }
+      .header-craft-pill { font-size: 0.63rem; padding: 3px 8px; }
+      .nav-logo { font-size: 0.82rem; }
+      .nav-link { padding: 5px 8px; font-size: 0.74rem; }
+    }
+
+    /* NAV */
+    nav {
+      background: rgba(31,20,13,0.74);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(244,220,181,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 52px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #f4e3c1;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-link {
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: rgba(255,241,219,0.74);
+      font-family: 'Manrope', sans-serif;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-link:hover { color: white; background: rgba(244,220,181,0.12); }
+    .nav-link.active { background: linear-gradient(135deg, #a37849 0%, #d7b06a 100%); color: #23170f; }
+
+    /* SUBMIT PAGE */
+    #submit-page {
+      display: none;
+      max-width: 640px;
+      margin: 60px auto 80px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .submit-icon {
+      width: 72px; height: 72px;
+      background: rgba(243,232,215,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .submit-icon svg { width: 32px; height: 32px; color: var(--terra); }
+
+    #submit-page h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    #submit-page p {
+      color: var(--warm-gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 20px;
+      border-radius: 20px;
+      background: var(--terra-pale);
+      color: var(--sienna);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* FEATURED CARD */
+    .card.featured {
+      border: 2px solid var(--terra);
+      box-shadow: 0 4px 20px rgba(193,68,14,0.15);
+      grid-column: span 1;
+    }
+
+    .card.featured:hover {
+      box-shadow: 0 16px 48px rgba(193,68,14,0.22);
+    }
+
+    .card-featured-banner {
+      background: linear-gradient(135deg, var(--dark) 0%, #1e3d30 55%, var(--craft) 100%);
+      padding: 22px 20px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-featured-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--terra);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+    }
+
+    .card-featured-banner .card-name {
+      color: white;
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .card-featured-banner .card-city {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .card-pull-quote {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--stone);
+      border-left: 3px solid var(--craft);
+      padding-left: 12px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .btn-book {
+      background: var(--terra);
+      color: white;
+      font-weight: 700;
+    }
+
+    .btn-book:hover { background: var(--terra-light); }
+
+    /* COMING SOON CRAFT CARD */
+    .coming-soon-craft {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .coming-soon-craft .badge {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: var(--terra-pale);
+      color: var(--sienna);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .coming-soon-craft h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .coming-soon-craft p {
+      color: var(--warm-gray);
+      font-size: 0.9rem;
+      max-width: 420px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">DIY Studio Search</span>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('finder')">Find Studios</button>
+    <button class="nav-link" onclick="showPage('submit')">Submit a Studio</button>
+  </div>
+</nav>
+
+<div id="finder-page">
+<header>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-logo-frame">
+        <img class="hero-logo-lockup" src="assets/logo-lockup.png" alt="DIY Studio Search" />
+      </div>
+      <p class="hero-subtitle">Find your creative space across pottery, painting, leatherworking, woodworking, glassblowing, and jewelry making classes.</p>
+      <div class="header-crafts">
+        <span class="header-craft-pill">Pottery</span>
+        <span class="header-craft-pill">Painting</span>
+        <span class="header-craft-pill">Leatherworking</span>
+        <span class="header-craft-pill">Woodworking</span>
+        <span class="header-craft-pill">Glassblowing</span>
+        <span class="header-craft-pill">Jewelry Making</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <select id="craftFilter">
+      <option value="">All Crafts</option>
+      <option value="Pottery">Pottery</option>
+      <option value="Painting">Painting</option>
+      <option value="Leatherworking">Leatherworking</option>
+      <option value="Woodworking">Woodworking</option>
+      <option value="Glassblowing">Glassblowing</option>
+      <option value="Jewelry Making">Jewelry Making</option>
+    </select>
+    <div class="search-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search studios, cities, or offerings…" />
+    </div>
+    <select id="cityFilter">
+      <option value="">All Cities</option>
+      <option value="Asheville">Asheville</option>
+      <option value="Boone">Boone</option>
+      <option value="Brasstown">Brasstown</option>
+      <option value="Canton">Canton</option>
+      <option value="Burlington">Burlington</option>
+      <option value="Carrboro">Carrboro</option>
+      <option value="Cary">Cary</option>
+      <option value="Chapel Hill">Chapel Hill</option>
+      <option value="Charlotte">Charlotte</option>
+      <option value="Concord">Concord</option>
+      <option value="Durham">Durham</option>
+      <option value="Farmville">Farmville</option>
+      <option value="Fayetteville">Fayetteville</option>
+      <option value="Pittsboro">Pittsboro</option>
+      <option value="Gastonia">Gastonia</option>
+      <option value="Greensboro">Greensboro</option>
+      <option value="Hickory">Hickory</option>
+      <option value="High Point">High Point</option>
+      <option value="Huntersville">Huntersville</option>
+      <option value="Indian Trail">Indian Trail</option>
+      <option value="Kannapolis">Kannapolis</option>
+      <option value="Lincolnton">Lincolnton</option>
+      <option value="Mooresville">Mooresville</option>
+      <option value="New Bern">New Bern</option>
+      <option value="Raleigh">Raleigh</option>
+      <option value="Star">Star</option>
+      <option value="Waynesville">Waynesville</option>
+      <option value="Weaverville">Weaverville</option>
+      <option value="Wilmington">Wilmington</option>
+      <option value="Winston-Salem">Winston-Salem</option>
+    </select>
+    <select id="tagFilter">
+      <option value="">All Offerings</option>
+      <optgroup label="Skill Level">
+        <option value="Beginner-Friendly">Beginner-Friendly</option>
+        <option value="All Levels">All Levels</option>
+      </optgroup>
+      <optgroup label="Format">
+        <option value="Classes">Classes</option>
+        <option value="Workshops">Workshops</option>
+        <option value="Private Lessons">Private Lessons</option>
+        <option value="Small Classes">Small Classes</option>
+        <option value="Walk-In">Walk-In</option>
+      </optgroup>
+      <optgroup label="Access">
+        <option value="Open Studio">Open Studio</option>
+        <option value="Studio Membership">Studio Membership</option>
+        <option value="Studio Rental">Studio Rental</option>
+        <option value="Supplies">Supplies</option>
+      </optgroup>
+      <optgroup label="Pottery">
+        <option value="Wheel Throwing">Wheel Throwing</option>
+        <option value="Hand Building">Hand Building</option>
+        <option value="Glazing">Glazing</option>
+        <option value="Raku">Raku</option>
+        <option value="Alternative Firing">Alternative Firing</option>
+        <option value="Pottery Painting">Pottery Painting</option>
+      </optgroup>
+      <optgroup label="Painting">
+        <option value="Drawing">Drawing</option>
+        <option value="Acrylic Painting">Acrylic Painting</option>
+        <option value="Oil Painting">Oil Painting</option>
+        <option value="Watercolor">Watercolor</option>
+        <option value="Mixed Media">Mixed Media</option>
+        <option value="Splatter Painting">Splatter Painting</option>
+        <option value="Paint Parties">Paint Parties</option>
+      </optgroup>
+      <optgroup label="Leather">
+        <option value="Hand Stitching">Hand Stitching</option>
+        <option value="Leather Goods">Leather Goods</option>
+      </optgroup>
+      <optgroup label="Wood">
+        <option value="Woodturning">Woodturning</option>
+        <option value="Furniture Making">Furniture Making</option>
+        <option value="Hand Tools">Hand Tools</option>
+        <option value="CNC">CNC</option>
+      </optgroup>
+      <optgroup label="Glass">
+        <option value="Flameworking">Flameworking</option>
+        <option value="Glass Fusing">Glass Fusing</option>
+      </optgroup>
+      <optgroup label="Jewelry">
+        <option value="Metalsmithing">Metalsmithing</option>
+        <option value="Stone Setting">Stone Setting</option>
+        <option value="Lost Wax Casting">Lost Wax Casting</option>
+      </optgroup>
+      <optgroup label="Audience">
+        <option value="Kids">Kids</option>
+        <option value="Family-Friendly">Family-Friendly</option>
+        <option value="Camps">Camps</option>
+        <option value="Team Building">Team Building</option>
+      </optgroup>
+      <optgroup label="Experience">
+        <option value="Events">Events</option>
+        <option value="Retreats">Retreats</option>
+        <option value="Community">Community</option>
+        <option value="Non-Profit">Non-Profit</option>
+      </optgroup>
+      <optgroup label="Studio Type">
+        <option value="Multi-Discipline">Multi-Discipline</option>
+        <option value="Gallery">Gallery</option>
+      </optgroup>
+    </select>
+  </div>
+</div>
+
+<div class="result-bar">
+  <span class="result-count" id="resultCount"></span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  DIY Studio Search &mdash; Data sourced from studio websites &amp; public listings. Always verify hours before visiting.
+</footer>
+</div><!-- end finder-page -->
+
+<div id="submit-page">
+  <div class="submit-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+  </div>
+  <h2>Submit a Studio</h2>
+  <p>Know a studio or class that belongs on the map? We want to hear about it. Whether it's a hidden gem in a small town or a well-known community favorite, help us build the most complete DIY craft directory in North Carolina.</p>
+  <p>Submissions are reviewed before going live. We'll reach out if we need more information.</p>
+  <span class="coming-soon-badge">Form Coming Soon</span>
+</div>
+
+<script>
+const studios = [
+  // ── CHARLOTTE ──
+  {
+    name: "Pottery Central",
+    city: "Charlotte",
+    address: "4843 Monroe Rd, Charlotte, NC 28205",
+    phone: "(704) 307-7557",
+    website: "https://potterycentral.com",
+    desc: "Expert wheel throwing instruction from a Master Potter. Two-hour sessions with demo and step-by-step guidance. Great for all skill levels.",
+    tags: ["Wheel Throwing", "Classes", "Workshops"]
+  },
+  {
+    name: "Clayworks",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://clayworksinc.org",
+    desc: "Multi-week wheel classes for adults at beginner, intermediate, and advanced levels. Strong community-focused teaching environment.",
+    tags: ["Wheel Throwing", "Multi-Week Classes", "Adult"]
+  },
+  {
+    name: "The Little Studio",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://thelittlestudioclt.com",
+    desc: "Small class sizes with individual instruction. Private pottery wheel classes featuring studio tours and guided wheel throwing sessions.",
+    tags: ["Wheel Throwing", "Private Lessons", "Small Classes"]
+  },
+  {
+    name: "Small Hands Big Art",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://smallhandsbigart.com",
+    desc: "Pottery and art classes, camps, parties, and workshops for kids (toddlers to teens) and adults. Family-friendly atmosphere.",
+    tags: ["Kids", "Adult", "Workshops", "Camps"]
+  },
+  {
+    name: "Cedar Oak Farm & Pottery",
+    city: "Indian Trail",
+    address: "7816 W Duncan Rd, Indian Trail, NC 28079",
+    phone: "(704) 750-9821",
+    website: "https://cedaroakfarmpottery.com",
+    desc: "Wheel throwing, hand-building, sculpting, and alternative firing (Raku, barrel, pit-firing). Eight-week courses covering all fundamentals.",
+    tags: ["Wheel Throwing", "Hand Building", "Raku", "Alternative Firing"]
+  },
+  {
+    name: "Village Studio and Gallery",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://vsgnc.com",
+    desc: "Pottery classes and studio memberships in a gallery setting. Members enjoy open studio access alongside structured class offerings.",
+    tags: ["Studio Membership", "Classes", "Gallery"]
+  },
+  // ── ASHEVILLE ──
+  {
+    name: "The Village Potters Clay Center",
+    city: "Asheville",
+    address: "44 Westgate Parkway, Asheville, NC 28806",
+    phone: "(828) 253-2424",
+    website: "https://thevillagepotters.com",
+    desc: "Fine art ceramics gallery, weekly classes, workshops, and pottery supplies. A creative hub for the Asheville pottery community.",
+    tags: ["Classes", "Open Studio", "Gallery", "Supplies"]
+  },
+  {
+    name: "Batton Clayworks",
+    city: "Asheville",
+    address: "Asheville, NC",
+    phone: "",
+    website: "https://battonclayworks.com",
+    desc: "Near Downtown Asheville and Biltmore Village. Pottery classes, workshops and retreats. Handmade pottery gallery open Tues–Sat.",
+    tags: ["Workshops", "Retreats", "Gallery"]
+  },
+  {
+    name: "Ross Pottery Studio",
+    city: "Asheville",
+    address: "Asheville, NC",
+    phone: "",
+    website: "https://rosspottery.studio",
+    desc: "Hands-on pottery classes, private sessions, and summer camps with expert instructors. Welcoming space for beginners and experienced potters alike.",
+    tags: ["Classes", "Private Lessons", "Camps", "Beginner-Friendly"]
+  },
+  {
+    name: "Plays in Mud Pottery",
+    city: "Asheville",
+    address: "West Asheville, NC",
+    phone: "",
+    website: "https://playsinmud.com",
+    desc: "Handmade pottery studio in West Asheville. Workshops and opportunities to see the pottery-making process up close.",
+    tags: ["Workshops", "Handmade"]
+  },
+  {
+    name: "Fired Up! Lounge",
+    city: "Asheville",
+    address: "26 Wall Street, Asheville, NC 28801",
+    phone: "",
+    website: "https://fireduplounge.com",
+    desc: "In-studio painting and pottery classes with hands-on experiences in a fun, relaxed lounge setting in downtown Asheville.",
+    tags: ["Classes", "Pottery Painting", "Walk-In"]
+  },
+  {
+    name: "Angelique Tassistro Pottery",
+    city: "Asheville",
+    address: "375 Depot Street Suite 102, Asheville, NC 28801",
+    phone: "",
+    website: "",
+    desc: "Studio and gallery in the River Arts District. Open Mon–Sat 11am–4pm or by appointment. Functional and sculptural ceramics.",
+    tags: ["Studio", "Gallery", "River Arts District"]
+  },
+  {
+    name: "Mangum Pottery Studio and Gallery",
+    city: "Weaverville",
+    address: "Weaverville, NC (7 miles from Asheville)",
+    phone: "",
+    website: "https://mangumpottery.com",
+    desc: "Pottery studio and gallery in Weaverville, a short drive from Asheville. Beautiful handcrafted pottery in a scenic mountain setting.",
+    tags: ["Gallery", "Studio"]
+  },
+  // ── RALEIGH ──
+  {
+    craft: ["Pottery", "Painting"],
+    name: "Sertoma Arts Center",
+    city: "Raleigh",
+    address: "Raleigh, NC",
+    phone: "(919) 996-2329",
+    website: "https://raleighnc.gov/arts",
+    desc: "City-run Raleigh arts center with dedicated ceramics facilities plus year-round visual arts programming. Alongside clay, recent public class listings include mixed media and drawing-based courses for teens and adults.",
+    tags: ["Classes", "Open Studio", "Wheel Throwing", "Hand Building", "Beginner-Friendly", "Mixed Media", "Drawing"]
+  },
+  {
+    craft: ["Pottery", "Jewelry Making", "Painting"],
+    name: "Pullen Arts Center",
+    city: "Raleigh",
+    address: "Pullen Park, Raleigh, NC",
+    phone: "(919) 996-6126",
+    website: "https://raleighnc.gov",
+    desc: "City-run arts center inside Pullen Park offering classes in pottery, jewelry making, bookmaking, printmaking, and painting taught by professional artists. Studio memberships available for ongoing access.",
+    tags: ["Classes", "Studio Membership", "Multi-Discipline", "Metalsmithing", "Wheel Throwing", "Drawing", "Mixed Media"]
+  },
+  {
+    name: "Liz Kelly Pottery",
+    city: "Raleigh",
+    address: "1201 W Lenoir St, Raleigh, NC 27603",
+    phone: "(919) 656-6099",
+    website: "https://lizkellypottery.com",
+    desc: "Functional handmade pottery studio. Studio visits by appointment — a great way to see a working potter's space and purchase hand-crafted work.",
+    tags: ["Handmade", "Functional Pottery", "By Appointment"]
+  },
+  {
+    name: "Julie Berkowitz Ceramics",
+    city: "Chapel Hill",
+    address: "408 Stony Hill Rd, Chapel Hill, NC 27516",
+    phone: "(984) 999-0329",
+    website: "https://julieberkowitzceramics.com",
+    desc: "Functional pottery classes and studio space for potters in the Triangle area. Serves Raleigh, Durham, and Chapel Hill communities.",
+    tags: ["Classes", "Functional Pottery", "Studio Space"]
+  },
+  {
+    name: "Zebulon Pottery",
+    city: "Raleigh",
+    address: "Raleigh, NC",
+    phone: "",
+    website: "https://zebulonpottery.com",
+    desc: "Pottery classes for kids and adults, birthday parties, and team building events. A versatile studio great for group experiences.",
+    tags: ["Kids", "Adult", "Team Building", "Parties"]
+  },
+  // ── DURHAM ──
+  {
+    name: "Claymakers",
+    city: "Durham",
+    address: "451 S Driver St, Durham, NC 27703",
+    phone: "(919) 530-8355",
+    website: "https://claymakers.org",
+    desc: "Ceramics arts community with pottery classes, studio space for rent, and supplies. Open Tues–Sat for potters of all skill levels.",
+    tags: ["Classes", "Open Studio", "Studio Rental", "Supplies"]
+  },
+  {
+    name: "Delores Pottery",
+    city: "Durham",
+    address: "1010 W Main St, Durham, NC 27701",
+    phone: "",
+    website: "https://delorespottery.com",
+    desc: "6-week and 1-night wheel and hand building classes, workshops, and kiln rentals. Open Wed, Fri, and weekends in downtown Durham.",
+    tags: ["Wheel Throwing", "Hand Building", "Kiln Rental", "Workshops"]
+  },
+  {
+    name: "Durham Arts Council – Clay Studio",
+    city: "Durham",
+    address: "120 Morris St, Durham, NC 27701",
+    phone: "(919) 560-2787",
+    website: "https://durhamarts.org",
+    desc: "Pottery classes for beginner through advanced students at the Durham Arts Council. Second location at Northgate Mall.",
+    tags: ["Classes", "Beginner-Friendly", "Advanced"]
+  },
+  // ── CHAPEL HILL / CARRBORO ──
+  {
+    name: "Community Clay Studio",
+    city: "Chapel Hill",
+    address: "200 Plant Road, Chapel Hill, NC",
+    phone: "",
+    website: "https://townofchapelhill.org",
+    desc: "Nine potter's wheels, three kilns, and 1,500 sq ft of studio space behind Community Center Park. Wheel throwing and hand building available.",
+    tags: ["Wheel Throwing", "Hand Building", "Open Studio"]
+  },
+  {
+    name: "ArtsCenter Ceramics Studio",
+    city: "Carrboro",
+    address: "Carrboro, NC",
+    phone: "",
+    website: "https://artscenterlive.org",
+    desc: "30-year-old studio offering wheel and hand-building classes with dedicated teachers and studio assistants. A beloved Triangle institution.",
+    tags: ["Classes", "Wheel Throwing", "Hand Building"]
+  },
+  {
+    name: "Cely's House Creative Workshops",
+    city: "Chapel Hill",
+    address: "Chapel Hill, NC",
+    phone: "",
+    website: "https://celyshouse.net",
+    desc: "Pottery classes for all ages including hand-building and throwing. After-school programs, summer art camps, and 25+ years of art education experience.",
+    tags: ["Kids", "Adult", "Hand Building", "Wheel Throwing", "Camps"]
+  },
+  // ── GREENSBORO ──
+  {
+    name: "Center for Visual Artists",
+    city: "Greensboro",
+    address: "200 North Davie Street Box 13, Greensboro, NC 27401",
+    phone: "(336) 333-7475",
+    website: "https://mycvagreensboro.org",
+    desc: "Adult pottery classes in a professional arts center setting. Part of Greensboro's vibrant Davie Street arts district.",
+    tags: ["Classes", "Adult"]
+  },
+  {
+    name: "Art Alliance Greensboro",
+    city: "Greensboro",
+    address: "Greensboro Cultural Center, Room 129, Greensboro, NC",
+    phone: "",
+    website: "https://artalliancegso.org",
+    craft: ["Pottery", "Painting"],
+    desc: "Community-focused Greensboro arts program running pottery in Room 129 and fine art classes in Room 127 at the Cultural Center. Current offerings span drawing and painting for adults and youth in small class formats.",
+    tags: ["Classes", "Adult", "Beginner-Friendly", "Drawing", "Acrylic Painting", "Multi-Discipline"]
+  },
+  {
+    name: "The Clay Bakery Studio",
+    city: "Greensboro",
+    address: "Greensboro, NC",
+    phone: "",
+    website: "https://bonniehitchcock.com",
+    desc: "Individual and group instruction in wheel throwing, hand building, and glazing techniques. Small, personalized class environment.",
+    tags: ["Wheel Throwing", "Hand Building", "Glazing", "Small Classes"]
+  },
+  // ── WILMINGTON ──
+  {
+    name: "Orange Street Pottery",
+    city: "Wilmington",
+    address: "120 South Second Street, Wilmington, NC",
+    phone: "",
+    website: "https://orangestreetpottery.com",
+    desc: "Non-profit teaching studio founded in 1982. Hand building, wheel throwing, and glazing for all skill levels. Mon–Sat open hours.",
+    tags: ["Non-Profit", "Wheel Throwing", "Hand Building", "Beginner-Friendly"]
+  },
+  {
+    name: "Bookworm Pottery & Co.",
+    city: "Wilmington",
+    address: "707 S 16th Unit 3, Wilmington, NC 28401",
+    phone: "",
+    website: "https://bookwormpotteryco.com",
+    desc: "Pottery wheel and sculpting classes, pottery painting, kiln rental, monthly memberships, and corporate events in the Cargo District.",
+    tags: ["Wheel Throwing", "Kiln Rental", "Memberships", "Events"]
+  },
+  {
+    name: "A Little Twisted Pottery",
+    city: "Wilmington",
+    address: "2500 Blue Clay Road, Wilmington, NC 28405",
+    phone: "",
+    website: "https://alittletwistedpottery.com",
+    desc: "Student- and woman-owned studio. Workshops, series courses, solo sessions, pottery painting, and private events including showers and birthday celebrations.",
+    tags: ["Workshops", "Private Events", "Pottery Painting", "Solo Sessions"]
+  },
+  {
+    name: "Fat Cat Pottery",
+    city: "Wilmington",
+    address: "Wilmington, NC",
+    phone: "",
+    website: "https://fatcatpottery.com",
+    desc: "Beginner-friendly up to intermediate classes in hand building or wheel throwing. Morning and evening options to fit your schedule.",
+    tags: ["Wheel Throwing", "Hand Building", "Beginner-Friendly"]
+  },
+  {
+    name: "Salty Ceramics",
+    city: "Wilmington",
+    address: "15th and Dawson, Wilmington, NC",
+    phone: "",
+    website: "https://saltyceramics.com",
+    desc: "Pottery studio near the Cargo District with a relaxed coastal vibe. Classes and open studio near downtown Wilmington.",
+    tags: ["Classes", "Open Studio"]
+  },
+  // ── WINSTON-SALEM ──
+  {
+    craft: ["Pottery", "Woodworking", "Glassblowing", "Jewelry Making"],
+    name: "Sawtooth School for Visual Art",
+    city: "Winston-Salem",
+    address: "251 N Spruce St, Winston-Salem, NC 27101",
+    phone: "(336) 723-7395",
+    website: "https://sawtooth.org",
+    desc: "One of the most complete multi-craft education campuses in NC. Non-profit community art school offering ceramics, dedicated Wood and Lathe Studios, and a Glass Studio — all under one roof. Classes range from beginner through advanced across all three disciplines, with open studio access and private instruction available.",
+    tags: ["Classes", "Workshops", "Non-Profit", "Community", "All Levels", "Beginner-Friendly", "Woodturning", "Flameworking", "Open Studio", "Multi-Discipline"]
+  },
+  {
+    name: "Goose Creek Pottery",
+    city: "Winston-Salem",
+    address: "Winston-Salem, NC",
+    phone: "",
+    website: "https://goosecreekpottery.company.site",
+    desc: "Working pottery studio in Winston-Salem offering handcrafted ceramics and studio classes.",
+    tags: ["Studio", "Handmade"]
+  },
+  // ── BOONE ──
+  {
+    name: "The Pottery Lot",
+    city: "Boone",
+    address: "Foscoe, NC (near Boone)",
+    phone: "(828) 967-0133",
+    website: "https://thepotterylot.com",
+    desc: "Community pottery studio for all skill levels with a curated gallery of local Western NC potters. A mountain pottery gem.",
+    tags: ["Open Studio", "Gallery", "Community", "All Levels"]
+  },
+  {
+    name: "High Country Clay",
+    city: "Boone",
+    address: "Boone, NC",
+    phone: "",
+    website: "https://highcountryclay.com",
+    desc: "Studio tours, lessons, and day passes by appointment. Book online to explore this working pottery studio in the High Country.",
+    tags: ["By Appointment", "Lessons", "Studio Tours"]
+  },
+  {
+    name: "Doe Ridge Pottery Gallery",
+    city: "Boone",
+    address: "Boone, NC (est. 1988)",
+    phone: "(828) 264-1127",
+    website: "",
+    desc: "Long-established pottery gallery serving the High Country since 1988. Features work from regional artists and offers a curated selection of functional ware.",
+    tags: ["Gallery", "Regional Artists"]
+  },
+  // ── HICKORY ──
+  {
+    name: "Mud Mamas Studio",
+    city: "Hickory",
+    address: "Hickory Arts District, Old Lenoir Rd, Hickory, NC",
+    phone: "",
+    website: "https://mudmamasstudio.com",
+    desc: "Community pottery studio in the Hickory arts district. Classes, open studio time, and a welcoming atmosphere for potters at every level.",
+    tags: ["Community", "Open Studio", "Classes"]
+  },
+  {
+    name: "CVCC Potters' Workshop",
+    city: "Hickory",
+    address: "5845 Walnut Grove Lane, Hickory, NC 28602",
+    phone: "(828) 327-7000 ext. 4032",
+    website: "https://cvcc.edu",
+    desc: "Pottery classes and workshops through Catawba Valley Community College. Accessible, well-equipped studio at affordable community college rates.",
+    tags: ["Classes", "Workshops", "Community College"]
+  },
+  // ── CONCORD ──
+  {
+    craft: ["Pottery", "Woodworking"],
+    name: "ClearWater Arts Center & Studios",
+    city: "Concord",
+    address: "223 Crowell Dr NW, Concord, NC 28025",
+    phone: "(704) 920-6600",
+    website: "https://clearwaterartists.com",
+    desc: "City of Concord community arts hub and one of the Charlotte metro's most complete multi-craft spaces. The ceramics center has a full open classroom with potter's wheels, glazing room, mixing room, and kiln room. The Southern Piedmont Woodturners Club calls this home, and 14 working artists keep the studios active year-round. Drop-in hours Wed–Sat.",
+    tags: ["Wheel Throwing", "Glazing", "Woodturning", "Classes", "Open Studio", "Community", "Gallery", "Multi-Discipline"],
+    featured: true,
+    pullQuote: "Pottery, woodturning, and working artists all under one roof — one of Concord's best-kept creative secrets.",
+    bookingUrl: "https://clearwaterartists.com"
+  },
+  // ── KANNAPOLIS ──
+  {
+    name: "Paint Your Hearts Out",
+    city: "Kannapolis",
+    address: "2210 Roxie St, Kannapolis, NC",
+    phone: "",
+    website: "https://paintyourheartsout.com",
+    desc: "Ceramic art, intro pottery wheel, clay hand-building, and more. Walk-in Open Paint Studio time plus classes in pottery, stained glass, and canvas painting.",
+    tags: ["Wheel Throwing", "Hand Building", "Walk-In", "Classes"]
+  },
+  // ── HUNTERSVILLE / MOORESVILLE ──
+  {
+    name: "Meg-Art Pottery Painting Studio",
+    city: "Huntersville",
+    address: "15940 Northcross Drive Suite A, Huntersville, NC 28078",
+    phone: "(704) 896-5211",
+    website: "https://meg-art.com",
+    desc: "Paint-your-own-pottery with 2,000+ ceramic items plus an espresso bar with lattes, smoothies, and tea. Great for date nights and family outings.",
+    tags: ["Pottery Painting", "Walk-In", "Family-Friendly"]
+  },
+  {
+    name: "Lake Norman Pottery",
+    city: "Mooresville",
+    address: "Mooresville, NC",
+    phone: "",
+    website: "https://lakenormanpottery.com",
+    desc: "Pottery classes, workshops, and studio memberships in Mooresville near Lake Norman. A growing hub for Iredell County clay enthusiasts.",
+    tags: ["Classes", "Workshops", "Studio Membership"]
+  },
+  // ── FAYETTEVILLE ──
+  {
+    name: "Just Claying Around Inc.",
+    city: "Fayetteville",
+    address: "201 S McPherson Church Rd Ste 109, Fayetteville, NC",
+    phone: "",
+    website: "",
+    desc: "Paint-your-own-pottery studio in Fayetteville. Fun and accessible for families, parties, and solo creativity sessions.",
+    tags: ["Pottery Painting", "Family-Friendly", "Parties"]
+  },
+  {
+    name: "Cape Fear Studios",
+    city: "Fayetteville",
+    address: "Fayetteville, NC",
+    phone: "",
+    website: "https://capefearstudios.com",
+    desc: "Art workshops in various mediums including pottery with skilled instructors. Rotating schedule of classes for beginners and experienced artists.",
+    tags: ["Workshops", "Classes", "Multi-Discipline"]
+  },
+  // ── BURLINGTON ──
+  {
+    name: "Frickery Frackery Pottery",
+    city: "Burlington",
+    address: "2136 S Church St, Burlington, NC 27215",
+    phone: "",
+    website: "https://frickeryfrackerypottery.com",
+    desc: "Beginner Wheel Throwing classes run 5 weeks covering centering, throwing, trimming, glazing, and finishing. Weekday evening and weekend workshops.",
+    tags: ["Wheel Throwing", "Beginner-Friendly", "Classes", "Workshops"]
+  },
+  {
+    name: "Art Center of Burlington",
+    city: "Burlington",
+    address: "Burlington, NC",
+    phone: "",
+    website: "https://btownart.com",
+    desc: "Adult technique classes including pottery at the Alamance County arts center. Part of Burlington's growing arts scene.",
+    tags: ["Classes", "Adult"]
+  },
+  // ── HIGH POINT ──
+  {
+    name: "The Art Gallery at Congdon Yards",
+    city: "High Point",
+    address: "High Point, NC",
+    phone: "",
+    website: "https://tagart.org",
+    desc: "Pottery classes and a full clay studio with various class options and open studio sessions in the vibrant Congdon Yards arts complex.",
+    tags: ["Classes", "Open Studio", "Clay Studio"]
+  },
+  // ── CARY ──
+  {
+    name: "Cary Arts Center – Clay Studio",
+    city: "Cary",
+    address: "Cary, NC",
+    phone: "",
+    website: "https://carync.gov",
+    desc: "City-run clay studio with 10 potter's wheels, slab roller, two extruders, and work tables. Classes and memberships available.",
+    tags: ["Wheel Throwing", "Classes", "Studio Membership", "Open Studio"]
+  },
+  {
+    name: "Carolina Clay Studio",
+    city: "Cary",
+    address: "Cary, NC",
+    phone: "",
+    website: "https://carolinaclaystudio.com",
+    desc: "Community-focused ceramics studio with a well-equipped workspace for wheel throwing and handbuilding. Memberships and structured classes.",
+    tags: ["Wheel Throwing", "Hand Building", "Studio Membership", "Community"]
+  },
+  {
+    name: "Cary Pottery Studio",
+    city: "Cary",
+    address: "Downtown Cary, NC",
+    phone: "",
+    website: "https://carypotterystudionc.com",
+    desc: "Handmade pottery by master potter Kenneth Neilsen in downtown Cary. A functional studio producing beautiful, one-of-a-kind stoneware.",
+    tags: ["Handmade", "Functional Pottery", "Gallery"]
+  },
+  // ── NEW BERN ──
+  {
+    name: "Bear Hands Pottery",
+    city: "New Bern",
+    address: "1820 Trent Blvd, New Bern, NC 28560",
+    phone: "",
+    website: "https://bearhandsart.com",
+    desc: "Small pottery studio using wheel-thrown and hand-building techniques. Handmade stoneware and ceramics. By appointment only.",
+    tags: ["Wheel Throwing", "Hand Building", "By Appointment", "Handmade"]
+  },
+  {
+    name: "The Accidental Artist",
+    city: "New Bern",
+    address: "219A Craven Street, New Bern, NC",
+    phone: "",
+    website: "https://theaccidentalartistnc.com",
+    desc: "Paint-your-own-pottery studio in historic downtown New Bern. Walk in, choose a piece, and make something to take home.",
+    tags: ["Pottery Painting", "Walk-In", "Family-Friendly"]
+  },
+  // ── GASTONIA ──
+  {
+    name: "Bluegill Pottery",
+    city: "Gastonia",
+    address: "4522 Wilkinson Blvd, Gastonia, NC 28056",
+    phone: "(704) 824-9928",
+    website: "https://bluegillpottery.com",
+    desc: "Pottery classes and resources in Gastonia. Open Mon–Fri, closed weekends. A well-established studio serving the Gaston County community.",
+    tags: ["Classes", "Resources"]
+  },
+  {
+    name: "Gaston School of the Arts",
+    city: "Gastonia",
+    address: "825 Union Rd, Gastonia, NC 28054",
+    phone: "(704) 866-8882",
+    website: "",
+    desc: "Pottery and arts classes through the Gaston School of the Arts. Structured curriculum for students seeking a deeper arts education experience.",
+    tags: ["Classes", "Multi-Discipline"]
+  },
+  // ── LINCOLNTON ──
+  {
+    name: "Rising Sun Pottery",
+    city: "Lincolnton",
+    address: "Historic Downtown Lincolnton, NC",
+    phone: "",
+    website: "https://risingsunpottery.com",
+    desc: "Full-service pottery studio open to the public in historic downtown Lincolnton, two blocks from Courthouse Square near Highway 321.",
+    tags: ["Open Studio", "Full-Service", "Gallery"]
+  },
+
+  // ── GLASSBLOWING ──
+  // ── CHARLOTTE ──
+  {
+    craft: "Glassblowing",
+    name: "Hot Glass Alley",
+    city: "Charlotte",
+    address: "438 Atando Ave, Charlotte, NC 28206",
+    phone: "(980) 209-9284",
+    website: "https://hotglassalley.com",
+    desc: "Charlotte's only hot glass studio — glassblowing, flameworking, and glass fusing classes for all levels. Their Make Your Own sessions put you alongside a skilled gaffer start to finish. Private parties, team building, and a free public demo every 3rd Friday of the month.",
+    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Flameworking", "Glass Fusing", "Events", "Gallery"]
+  },
+  // ── DURHAM ──
+  {
+    craft: "Glassblowing",
+    name: "Firefly Hot Glass",
+    city: "Durham",
+    address: "800 Taylor St, Durham, NC 27701",
+    phone: "",
+    website: "https://fireflyhotglass.net",
+    desc: "Public access hot glass studio in Durham offering small group classes and studio rental. One of the Triangle's only working glassblowing facilities. Contact directly for current class schedule — the studio has been navigating a relocation.",
+    tags: ["Classes", "Studio Rental", "All Levels", "Small Classes"]
+  },
+  {
+    craft: ["Glassblowing", "Jewelry Making"],
+    name: "Liberty Arts",
+    city: "Durham",
+    address: "918 Pearl St, Durham, NC 27701",
+    phone: "(919) 294-8006",
+    website: "https://libertyartsnc.org",
+    desc: "Non-profit arts center in Durham offering glassblowing intensives and metalsmithing/jewelry classes alongside a working artists' community. The glassblowing beginner intensive runs 14 hours over four days. Jewelry programs cover hand fabrication and metalsmithing fundamentals. Classes kept intentionally small.",
+    tags: ["Classes", "Workshops", "Beginner-Friendly", "All Levels", "Non-Profit", "Community", "Metalsmithing"]
+  },
+  // ── PITTSBORO ──
+  {
+    craft: "Glassblowing",
+    name: "Jonathan Michael Davis Studio",
+    city: "Pittsboro",
+    address: "Rock Rest Rd, Pittsboro, NC 27312",
+    phone: "(919) 542-0394",
+    website: "https://jonathanmichaeldavis.com",
+    desc: "Private glassblowing studio between Raleigh, Durham, and Chapel Hill offering half-day, full-day, and two-day classes. Groups capped at six students for real hands-on time. Beginner through advanced, plus specialty workshops, team building, and studio rental.",
+    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Private Lessons", "Studio Rental", "Small Classes", "Team Building"]
+  },
+  // ── ASHEVILLE ──
+  {
+    craft: "Glassblowing",
+    name: "North Carolina Glass Center",
+    city: "Asheville",
+    address: "140C Roberts St, Asheville, NC 28801",
+    phone: "(828) 505-3552",
+    website: "https://ncglasscenter.org",
+    desc: "Non-profit public access glass studio in the heart of Asheville's River Arts District. Drop-in 30-minute Make Your Own sessions let you try glassblowing with no experience. Longer classes, open studio for members, and a working gallery. Wed–Sun 10am–5pm.",
+    tags: ["Classes", "Walk-In", "Open Studio", "Studio Membership", "Non-Profit", "Gallery", "Beginner-Friendly", "All Levels"]
+  },
+  {
+    craft: "Glassblowing",
+    name: "Lexington Glassworks",
+    city: "Asheville",
+    address: "81 S Lexington Ave, Asheville, NC 28801",
+    phone: "(828) 348-8427",
+    website: "https://lexingtonglassworks.com",
+    desc: "Premier glassblowing studio and gallery in downtown Asheville with a 5,000 sq ft working space. Stunning handmade glass art produced on-site. Watch glass artists at work and shop the gallery daily — Mon–Sat 10am–6pm, Sun 11am–6pm.",
+    tags: ["Gallery", "Classes", "Handmade", "Events"]
+  },
+  // ── STAR ──
+  {
+    craft: "Glassblowing",
+    name: "STARworks Glass Studio",
+    city: "Star",
+    address: "100 Russell Dr, Star, NC 27356",
+    phone: "(910) 428-9001",
+    website: "https://starworksnc.org/glass",
+    desc: "Public access hot glass studio in the NC Sandhills hosting visiting artists, residencies, and hands-on workshops for the public. Regular demonstrations pair glassblowing with local food and live music. One of the most unique craft destinations in the state.",
+    tags: ["Classes", "Workshops", "Open Studio", "Events", "All Levels", "Beginner-Friendly", "Community", "Retreats"]
+  },
+
+  // ── JEWELRY MAKING ──
+  // ── ASHEVILLE ──
+  {
+    craft: "Jewelry Making",
+    name: "Ignite Jewelry Studios",
+    city: "Asheville",
+    address: "84 Walnut St Unit A, Asheville, NC 28801",
+    phone: "(828) 989-8107",
+    website: "https://ignitejewelrystudios.com",
+    desc: "River Arts District studio offering jewelry workshops from beginner through advanced. The gallery showcases finished work from resident artists and students alike — a good signal of what you can make once you put in the time. Range of class formats available.",
+    tags: ["Classes", "Workshops", "Beginner-Friendly", "All Levels", "Gallery", "Metalsmithing"]
+  },
+  {
+    craft: "Jewelry Making",
+    name: "TORCHED Jewelry and Metalsmithing",
+    city: "Asheville",
+    address: "1056 Haywood Rd Suites A+B, Asheville, NC 28806",
+    phone: "(828) 407-0681",
+    website: "https://torchedavl.com",
+    desc: "Metalsmithing school in West Asheville with studio membership, adult classes, and youth programs (Junior Sparks for ages 8–11, Teen Sparks for 12–17). One of the few NC studios with a real kids pathway into the craft. Adult curriculum covers foundational metalsmithing through advanced fabrication techniques.",
+    tags: ["Classes", "Studio Membership", "Metalsmithing", "All Levels", "Beginner-Friendly", "Kids", "Family-Friendly"]
+  },
+  {
+    craft: "Jewelry Making",
+    name: "Mountain Metalworks Asheville",
+    city: "Asheville",
+    address: "22 London Rd, Asheville, NC",
+    phone: "(828) 505-0717",
+    website: "https://mtnmetalworksasheville.com",
+    desc: "Third-generation jeweler Emma Macchiarini runs this West Asheville studio specializing in hand-fabricated fine jewelry. Wedding ring-making classes are a signature offering — couples come specifically to make their own bands. Small class sizes and a focus on traditional hand fabrication over casting shortcuts.",
+    tags: ["Classes", "Workshops", "Metalsmithing", "Small Classes", "Events"]
+  },
+  // ── WILMINGTON ──
+  {
+    craft: "Jewelry Making",
+    name: "Chelsea Lea Metals",
+    city: "Wilmington",
+    address: "Mid-Town Wilmington, NC",
+    phone: "(910) 541-1523",
+    website: "https://chelsealeametals.com",
+    desc: "Intimate jewelry studio in Mid-Town Wilmington capping classes at 2–4 students. Curriculum covers metalsmithing and lost wax casting — two techniques that together give students a full picture of how fine jewelry is actually made. The small class cap isn't a limitation; it's the whole point.",
+    tags: ["Classes", "Small Classes", "Metalsmithing", "Lost Wax Casting", "Beginner-Friendly", "All Levels"]
+  },
+
+  // ── LEATHERWORKING ──
+  // ── CHARLOTTE ──
+  {
+    craft: "Leatherworking",
+    name: "ColsenKeane School of Leather",
+    city: "Charlotte",
+    address: "1707 E 7th St, Charlotte, NC 28204",
+    phone: "(704) 274-1152",
+    website: "https://colsenkeane.com/pages/the-colsenkeane-school-of-leather",
+    desc: "In-studio leatherworking residency and workshops in Charlotte's Elizabeth neighborhood. Their 10-week program covers leather selection, hand-stitching, pattern making, and small goods construction. Guided by artisans with 33 years of combined experience. Storefront open Mon–Sat.",
+    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods"]
+  },
+  {
+    craft: "Leatherworking",
+    name: "Tandy Leather Charlotte",
+    city: "Charlotte",
+    address: "4424 E Independence Blvd, Ste A, Charlotte, NC 28205",
+    phone: "(704) 536-8898",
+    website: "https://tandyleather.com/pages/tandy-leather-charlotte-150",
+    desc: "The go-to leather supply hub for Charlotte crafters. Carries full-grain leather, tools, kits, dyes, and machines. In-store Open Table sessions let you try tools and techniques before committing to a project. Classes available on a rotating schedule.",
+    tags: ["Supplies", "Classes", "Walk-In", "Beginner-Friendly", "Leather Goods"]
+  },
+  // ── WAYNESVILLE ──
+  {
+    craft: "Leatherworking",
+    name: "Axe and Awl Leatherworks",
+    city: "Waynesville",
+    address: "41 Depot St, Waynesville, NC 28786",
+    phone: "(828) 246-0996",
+    website: "https://axeandawlleatherworks.com",
+    desc: "Dedicated leatherworking studio and retail shop in downtown Waynesville. Hands-on workshops covering everything from wallets and bags to custom goods — open to individuals, groups, and private parties. Open Tue–Sun.",
+    tags: ["Workshops", "Classes", "All Levels", "Leather Goods", "Events"]
+  },
+  // ── BRASSTOWN ──
+  {
+    craft: ["Leatherworking", "Woodworking"],
+    name: "John C. Campbell Folk School",
+    city: "Brasstown",
+    address: "One Folk School Road, Brasstown, NC 28902",
+    phone: "(828) 837-2775",
+    website: "https://folkschool.org",
+    desc: "One of the oldest folk schools in the country, set in the Blue Ridge Mountains of western NC. Offers year-round weeklong and weekend classes in both leatherworking and woodworking — from hand-stitched leather goods and shoes to furniture making, woodturning, spoon carving, and beyond. Immersive residential setting with skilled instructors across every craft.",
+    tags: ["Classes", "Workshops", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods", "Woodturning", "Furniture Making", "Retreats", "Multi-Discipline"]
+  },
+  // ── RALEIGH ──
+  {
+    craft: "Leatherworking",
+    name: "Tandy Leather Raleigh",
+    city: "Raleigh",
+    address: "6514 Old Wake Forest Rd #130, Raleigh, NC 27616",
+    phone: "(919) 981-0021",
+    website: "https://tandyleather.com/pages/tandy-leather-raleigh-148",
+    desc: "Full-service leather supply store serving the Triangle. Stocks full-grain leather, tools, dyes, kits, and hardware. In-store Open Table sessions for beginners to try tools and techniques hands-on. Classes offered on a rotating schedule.",
+    tags: ["Supplies", "Classes", "Walk-In", "Beginner-Friendly", "Leather Goods"]
+  },
+  // ── WOODWORKING ──
+  // ── CHARLOTTE ──
+  {
+    craft: "Woodworking",
+    name: "MakerSpace Charlotte",
+    city: "Charlotte",
+    address: "1003 Louise Ave, Charlotte, NC 28205",
+    phone: "(704) 353-3300",
+    website: "https://makerspacecharlotte.org",
+    desc: "Community makerspace with a fully equipped woodworking shop — SawStop table saws, bandsaws, jointers, planers, and a chop saw station. Monthly woodworking classes open to all skill levels. Membership gets you 24/7 shop access and discounted class rates.",
+    tags: ["Classes", "Open Studio", "Studio Membership", "All Levels", "Community", "Workshops"]
+  },
+  // ── RALEIGH ──
+  {
+    craft: "Woodworking",
+    name: "Woodcraft of Raleigh",
+    city: "Raleigh",
+    address: "4317 Pleasant Valley Rd, Raleigh, NC 27612",
+    phone: "(919) 781-1911",
+    website: "https://woodcraft.com/pages/store-classes/raleigh",
+    desc: "Premier woodworking supply store with hands-on classes covering joinery, cabinetmaking, woodturning, CNC, furniture building, and finishing. Free monthly demos make this a great entry point for beginners. Serves the Triangle.",
+    tags: ["Classes", "Supplies", "Beginner-Friendly", "All Levels", "Woodturning", "CNC", "Workshops"]
+  },
+  // ── DURHAM ──
+  {
+    craft: "Woodworking",
+    name: "Bull City Woodshop",
+    city: "Durham",
+    address: "1912 E Pettigrew St, Durham, NC 27703",
+    phone: "(919) 433-7389",
+    website: "https://bullcitywoodshop.org",
+    desc: "Non-profit community woodshop in Durham empowering youth and adults through hands-on woodworking. Open shop access, structured classes, and mentorship programs. One of the most community-rooted maker spaces in the Triangle.",
+    tags: ["Classes", "Open Studio", "Community", "Non-Profit", "All Levels", "Beginner-Friendly"]
+  },
+  // ── CARY ──
+  {
+    craft: "Woodworking",
+    name: "Cary Arts Center – Woodworking Studio",
+    city: "Cary",
+    address: "Cary, NC",
+    phone: "",
+    website: "https://carync.gov",
+    desc: "City-run woodworking studio offering lathe and woodworking classes for teens and adults. Part of the Cary Arts Center complex alongside the clay studio. Well-maintained equipment and structured instruction from the Town of Cary.",
+    tags: ["Classes", "All Levels", "Woodturning", "Adult"]
+  },
+  // ── ASHEVILLE ──
+  {
+    craft: "Woodworking",
+    name: "Scott Meek Woodworks",
+    city: "Asheville",
+    address: "Asheville, NC",
+    phone: "",
+    website: "https://scottmeekwoodworks.com",
+    desc: "One-on-one hand tool woodworking instruction from a master furniture maker and plane builder in his own Asheville workshop. Four-hour sessions with personalized guidance — tools and materials provided. A rare chance to learn traditional hand tool technique in a working craftsman's shop.",
+    tags: ["Private Lessons", "Hand Tools", "Small Classes", "All Levels", "By Appointment"]
+  },
+  // ── CANTON ──
+  {
+    craft: "Woodworking",
+    name: "GPD Academy",
+    city: "Canton",
+    address: "14 Enterprise Dr, Canton, NC 28716",
+    phone: "(828) 627-3948",
+    website: "https://gpdacademy.com",
+    desc: "World-class woodworking school run by renowned furniture maker Gregory Paolini, 10 minutes west of Asheville. 6,000 sq ft shop with 1,600 sq ft of dedicated classroom space. Offerings range from beginner workshops to advanced furniture-making intensives. Group and private classes available.",
+    tags: ["Classes", "Workshops", "All Levels", "Furniture Making", "Hand Tools", "Small Classes", "Private Lessons"]
+  },
+  // ── FARMVILLE ──
+  {
+    craft: "Woodworking",
+    name: "NC Furniture School",
+    city: "Farmville",
+    address: "3749 W Wilson St, Farmville, NC 27828",
+    phone: "(252) 916-8226",
+    website: "https://ncfurnitureschool.com",
+    desc: "North Carolina's dedicated woodworking and furniture-making school. Offers one-day intensives, multi-day workshops, week-long immersives, and international study programs covering hand tools, CNC, CAD/CAM, cabinetmaking, and woodturning. Beginner through advanced.",
+    tags: ["Classes", "Workshops", "All Levels", "Furniture Making", "CNC", "Woodturning", "Hand Tools", "Retreats"]
+  },
+  // ── FAYETTEVILLE ──
+  {
+    craft: ["Leatherworking", "Woodworking"],
+    name: "Ballash Woodworks",
+    city: "Fayetteville",
+    address: "432 Cedar Creek Rd, Fayetteville, NC 28312",
+    phone: "(910) 920-2111",
+    website: "https://ballashwoodworks.com",
+    desc: "Veteran-owned shop in Fayetteville offering hands-on workshops in both woodworking and leatherworking. Monthly full-day leather sessions are led by Master Leatherworker Steven Chadduck — eight hours covering cutting, stitching, stamping, and dyeing. Woodworking classes and open shop access round out the offering.",
+    tags: ["Workshops", "Classes", "All Levels", "Beginner-Friendly", "Hand Stitching", "Leather Goods", "Open Studio", "Multi-Discipline"]
+  },
+  // ── PAINTING ──
+  // ── CHARLOTTE ──
+  {
+    craft: "Painting",
+    name: "Cre8tive Palette",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://www.cre8tivepalette.com/",
+    desc: "Charlotte painting and drawing studio offering classes for kids, teens, and adults from beginner through advanced. Monthly class batches cover graphite, acrylic, oil painting, pastel, and color pencil fundamentals in a structured studio format.",
+    tags: ["Classes", "Drawing", "Acrylic Painting", "Oil Painting", "Kids", "Adult", "All Levels"]
+  },
+  {
+    craft: "Painting",
+    name: "Splatter Charlotte",
+    city: "Charlotte",
+    address: "Charlotte, NC",
+    phone: "",
+    website: "https://www.splattercharlotte.com/",
+    desc: "NoDa paint experience built around making your own abstract canvas without needing formal training. Sessions include paint, canvases, protective gear, and delivery after the work dries, with team-building and celebration bookings available.",
+    tags: ["Splatter Painting", "Paint Parties", "Beginner-Friendly", "Events", "Team Building"]
+  },
+  // ── ASHEVILLE ──
+  {
+    craft: "Painting",
+    name: "Asheville Art Museum Adult Studio",
+    city: "Asheville",
+    address: "2 South Pack Square, Asheville, NC 28801",
+    phone: "(828) 253-3227",
+    website: "https://www.ashevilleart.org/learn/adult-programs/adult-studio/",
+    desc: "Museum-led adult studio program offering rotating workshops in painting, mixed media, and other visual arts inspired by current exhibitions. A strong fit for adults who want project-based classes with visiting teaching artists.",
+    tags: ["Classes", "Acrylic Painting", "Mixed Media", "Beginner-Friendly", "All Levels"]
+  },
+  // ── DURHAM ──
+  {
+    craft: "Painting",
+    name: "Durham Arts Council",
+    city: "Durham",
+    address: "120 Morris St, Durham, NC 27701",
+    phone: "(919) 560-2787",
+    website: "https://durhamarts.org/dac-art-classes/",
+    desc: "Downtown Durham arts hub offering painting and drawing classes alongside printmaking, mixed media, photography, and more throughout the year. Good option for beginners who want structured public classes with multiple session formats.",
+    tags: ["Classes", "Drawing", "Mixed Media", "Beginner-Friendly", "All Levels", "Non-Profit"]
+  },
+  // ── GREENSBORO ──
+  {
+    craft: "Painting",
+    name: "NKPaints Art Studio",
+    city: "Greensboro",
+    address: "503 East Washington St, Unit C, Greensboro, NC 27401",
+    phone: "(336) 324-0187",
+    website: "https://www.nkpaintsartstudio.com/",
+    desc: "Downtown Greensboro painting studio and gallery offering weekly art classes, camps, field trips, paint parties, and private celebrations. Built to feel approachable for beginners while still giving students a real studio experience.",
+    tags: ["Classes", "Paint Parties", "Acrylic Painting", "Beginner-Friendly", "Kids", "Camps"]
+  },
+  // ── WILMINGTON ──
+  {
+    craft: "Painting",
+    name: "theArtWorks",
+    city: "Wilmington",
+    address: "200 Willard Street, Wilmington, NC 28401",
+    phone: "(910) 352-7077",
+    website: "https://www.theartworks.co/classes",
+    desc: "Large Wilmington art village with working studios, gallery space, and classrooms. Current class listings include painting alongside photography and fiber offerings, giving it more of an open creative campus feel than a single-medium studio.",
+    tags: ["Classes", "Gallery", "Open Studio", "Community", "All Levels"]
+  },
+];
+
+const accentClasses = ['terra', 'sienna', 'sage', 'clay'];
+
+function mapsLink(address) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+}
+
+function renderCards(list) {
+  const grid = document.getElementById('grid');
+  const count = document.getElementById('resultCount');
+  grid.innerHTML = '';
+  count.textContent = `${list.length} studio${list.length !== 1 ? 's' : ''} found`;
+
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty"><h3>No studios found</h3><p>Try a different search term or city filter.</p></div>`;
+    return;
+  }
+
+  // Sort featured to top
+  list.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+  list.forEach((s, i) => {
+    const accent = accentClasses[i % accentClasses.length];
+    const tags = s.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    const phone = s.phone ? `<div class="meta-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.62 4.35 2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.89-.89a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>${s.phone}</span></div>` : '';
+    const addrRow = s.address ? `<div class="meta-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${s.address}</span></div>` : '';
+
+    if (s.featured) {
+      const bookBtn = s.bookingUrl
+        ? `<a href="${s.bookingUrl}" target="_blank" class="btn btn-book">Book a Class</a>`
+        : '';
+      const mapsBtn = s.address
+        ? `<a href="${mapsLink(s.address)}" target="_blank" class="btn btn-secondary">Maps</a>`
+        : '';
+      const pullQuote = s.pullQuote
+        ? `<div class="card-pull-quote">${s.pullQuote}</div>`
+        : '';
+
+      grid.innerHTML += `
+        <div class="card featured">
+          <div class="card-featured-banner">
+            <div class="featured-badge">★ Featured Studio</div>
+            <div class="card-city">${s.city}</div>
+            <div class="card-name">${s.name}</div>
+          </div>
+          <div class="card-body">
+            ${pullQuote}
+            <div class="card-desc">${s.desc}</div>
+            <div class="card-meta">${addrRow}${phone}</div>
+            <div class="tags">${tags}</div>
+            <div class="card-actions">${bookBtn}${mapsBtn}</div>
+          </div>
+        </div>`;
+      return;
+    }
+
+    const websiteBtn = s.website
+      ? `<a href="${s.website}" target="_blank" class="btn btn-secondary">Website</a>`
+      : '';
+    const mapsBtn = s.address
+      ? `<a href="${mapsLink(s.address)}" target="_blank" class="btn btn-primary">Maps</a>`
+      : '';
+
+    grid.innerHTML += `
+      <div class="card">
+        <div class="card-accent ${accent}"></div>
+        <div class="card-body">
+          <div class="card-city">${s.city}</div>
+          <div class="card-name">${s.name}</div>
+          <div class="card-desc">${s.desc}</div>
+          <div class="card-meta">${addrRow}${phone}</div>
+          <div class="tags">${tags}</div>
+          <div class="card-actions">${mapsBtn}${websiteBtn}</div>
+        </div>
+      </div>`;
+  });
+}
+
+function filter() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const city = document.getElementById('cityFilter').value;
+  const tag = document.getElementById('tagFilter').value;
+  const craft = document.getElementById('craftFilter').value;
+
+  const results = studios.filter(s => {
+    const craftArr = Array.isArray(s.craft) ? s.craft : [s.craft || 'Pottery'];
+    const matchCraft = !craft || craftArr.includes(craft);
+    const matchCity = !city || s.city === city;
+    const matchTag = !tag || s.tags.includes(tag);
+    const haystack = [s.name, s.city, s.desc, ...s.tags].join(' ').toLowerCase();
+    const matchQ = !q || haystack.includes(q);
+    return matchCraft && matchCity && matchTag && matchQ;
+  });
+  renderCards(results);
+}
+
+function showPage(page) {
+  document.getElementById('finder-page').style.display = page === 'finder' ? 'block' : 'none';
+  document.getElementById('submit-page').style.display = page === 'submit' ? 'block' : 'none';
+  document.querySelectorAll('.nav-link').forEach((el, i) => {
+    el.classList.toggle('active', (page === 'finder' && i === 0) || (page === 'submit' && i === 1));
+  });
+}
+
+document.getElementById('searchInput').addEventListener('input', filter);
+document.getElementById('cityFilter').addEventListener('change', filter);
+document.getElementById('tagFilter').addEventListener('change', filter);
+document.getElementById('craftFilter').addEventListener('change', filter);
+
+renderCards(studios);
+</script>
+</body>
+</html>
