@@ -1,0 +1,42 @@
+# Xcode build artifacts
+DerivedData/
+.deriveddata/
+.deriveddata-*/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode local settings (user-specific, not shared)
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Build output
+build/
+Build/
+
+# CocoaPods (if used)
+Pods/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Node / npm (if any tooling is added)
+node_modules/
+npm-debug.log
+
+# Editor temp files
+*.swp
+*.swo
+*~
