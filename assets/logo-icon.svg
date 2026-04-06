@@ -1,0 +1,22 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#2a1a0f"/>
+      <stop offset="100%" stop-color="#1a0e07"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="128" height="128" rx="22" fill="url(#bg)"/>
+  <!-- Amber accent bar -->
+  <rect x="22" y="14" width="84" height="3.5" rx="1.75" fill="#d7b06a"/>
+  <!-- Main monogram -->
+  <text x="64" y="68" text-anchor="middle" dominant-baseline="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="48" font-weight="700" fill="#f0e0c0" letter-spacing="-1">DSS</text>
+  <!-- Subtext -->
+  <text x="64" y="98" text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="10" font-weight="700" fill="#d7b06a" letter-spacing="3.5">SEARCH</text>
+  <!-- Amber accent bar bottom -->
+  <rect x="22" y="111" width="84" height="3.5" rx="1.75" fill="#d7b06a" opacity="0.4"/>
+</svg>
